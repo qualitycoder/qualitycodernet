@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::get('about', function () {return 'about';});
+Route::get('projects', function () {return 'projects';});
+Route::get('projects/(:id)', function () {return "project {$id}";});
+Route::post('webhooks', function () {return 'webhooks';});
