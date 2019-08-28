@@ -15,7 +15,7 @@ class Webhooks extends Migration
     {
         Schema::create('webhooks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('project_id');
+            $table->unsignedBigInteger('project_id');
             $table->string('data');
             $table->timestamps();
         });
