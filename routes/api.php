@@ -19,5 +19,5 @@ use Illuminate\Http\Request;
 
 Route::get('about', function () {return 'about';});
 Route::get('projects', function () {return 'projects';});
-Route::get('projects/(:id)', function ($id) {return "project {$id}";});
+Route::get('projects/(id)', function ($id) {return "project {$id}";});
 Route::post('webhooks', function () {return 'webhooks';});
