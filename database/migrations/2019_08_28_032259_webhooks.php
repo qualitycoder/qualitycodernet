@@ -16,9 +16,9 @@ class Webhooks extends Migration
         Schema::create('webhooks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
             $table->string('data');
             $table->timestamps();
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
