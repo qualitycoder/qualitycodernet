@@ -18,6 +18,9 @@ class Webhooks extends Migration
             $table->bigInteger('project_id');
             $table->string('data');
             $table->timestamps();
+        });
+
+        Schema::table('webhooks', function($table) {
             $table->foreign('project_id')->references('id')->on('projects');
         });
     }
