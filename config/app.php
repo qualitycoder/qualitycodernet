@@ -8,6 +8,8 @@ foreach($sps as $key=>$file) {
     $sps[$key] = 'App\\Providers\\ServiceProviders\\' . $file;
 }
 
+error_log(print_r($sps, 1));
+
 $default = [
 
     /*
