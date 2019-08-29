@@ -17,7 +17,13 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::get('about', function () {return 'about';});
-Route::get('projects', function () {return 'projects';});
-Route::get('projects/{id}', function ($id) {return "project {$id}";});
-Route::post('webhooks', function () {return 'webhooks';});
+Route::prefix('pages')->namespace('Pages')->group(function(){
+    Route::get('home', 'Pages/Home');
+    Route::get('about', function () {return 'about';});
+});
+
+Route::resource('projects', 'Projects')
+    ->except(['create', 'edit']);
+
+Route::resource('webhooks', 'Webhooks')
+    ->except(['create', 'edit']);
