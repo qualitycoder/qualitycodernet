@@ -2,7 +2,7 @@
 
 $dir = dir(dir(__FILE__)) . '/app/ServicesProviders';
 
-//$sps = array_diff(scandir($dir), ['.','..']);
+$sps = array_diff(scandir($dir), ['.','..']);
 
 $default = [
 
