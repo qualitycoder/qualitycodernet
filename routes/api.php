@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 //});
 
 Route::prefix('pages')->namespace('Pages')->group(function(){
-    Route::get('home', 'Pages/Home');
+    Route::get('home', 'Home');
     Route::get('about', function () {return 'about';});
 });
 
