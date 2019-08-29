@@ -1,15 +1,12 @@
 <?php
 
 $dir = dirname(dirname(__FILE__)) . '/app/ServiceProviders';
-
 $sps = array_diff(scandir($dir), ['.','..']);
 
 foreach($sps as $key=>$file) {
     $class = explode('.', $file);
     $sps[$key] = 'App\\ServiceProviders\\' . $class[0];
 }
-
-error_log(print_r($sps, 1));
 
 $default = [
 
@@ -240,7 +237,6 @@ $default = [
     ],
 
 ];
-
 $default['providers'] = array_merge($default['providers'], $sps);
 
 return $default;
