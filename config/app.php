@@ -1,8 +1,8 @@
 <?php
 
-$dir = dir(dir(__FILE__)) . '/app/ServicesProviders';
+//$dir = dir(dir(__FILE__)) . '/app/ServicesProviders';
 
-$sps = array_diff(scandir($dir), ['.','..']);
+//$sps = array_diff(scandir($dir), ['.','..']);
 
 $default = [
 
@@ -234,6 +234,6 @@ $default = [
 
 ];
 
-$default['providers'] = array_merge($default['providers'], $sps);
+//$default['providers'] = array_merge($default['providers'], $sps);
 
 return $default;
