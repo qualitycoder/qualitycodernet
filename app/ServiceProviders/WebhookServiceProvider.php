@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\ServiceProviders;
+namespace App\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
 use App\Services\Webhooks;

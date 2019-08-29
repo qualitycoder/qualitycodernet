@@ -5,7 +5,7 @@ $dir = dirname(dirname(__FILE__)) . '/app/ServiceProviders';
 $sps = array_diff(scandir($dir), ['.','..']);
 
 foreach($sps as $key=>$file) {
-    $sps[$key] = 'App\\Providers\\ServiceProviders\\' . $file;
+    $sps[$key] = 'App\\ServiceProviders\\' . $file;
 }
 
 error_log(print_r($sps, 1));
