@@ -1,6 +1,6 @@
 <?php
 
-//$dir = dir(dir(__FILE__)) . '/app/ServicesProviders';
+$dir = dir(dir(__FILE__)) . '/app/ServicesProviders';
 
 //$sps = array_diff(scandir($dir), ['.','..']);
 
