@@ -1,5 +1,12 @@
 <?php
 
+$dir = dir(dir(__FILE__)) . '/app/ServicesProviders';
+
+$sps = array_diff(scandir($dir), ['.','..']);
+
+print_r($sps);
+die();
+
 return [
 
     /*
