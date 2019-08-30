@@ -17,8 +17,18 @@ class Webhooks
     public function saveHook($data) {
         /* Comment */
         $this->webhookMdl->data = json_encode($data);
-        error_log($this->webhookMdl);
-        $project = $this->projectMdl->where('stub', 'ogmabot')->first();
+        $project = $this->projectMdl->where('stub', $data['repository']['name'])->first();
+
+        if($project == null) {
+            $this->projectMdl->name = $data['repository']['name'];
+            $this->projectMdl->language = $data['repository']['language'];
+            $this->projectMdl->description = $data['repository']['description'];
+            $this->projectMdl->stub = $data['repository']['name'];
+            $this->projectMdl->save();
+
+            $project = $this->projectMdl->where('stub', $data['repository']['name'])->first();
+        }
+
         $project->webhooks()->save($this->webhookMdl);
     }
 }
