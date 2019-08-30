@@ -17,9 +17,9 @@ class Webhooks extends Controller
     }
 
     public function store(Request $request) {
-        $data = $request->all();
-        $data_str = implode('[[QC]]', $data);
-        error_log($data_str);
+        $data = $request->json();
+
+        error_log($data);
 
         $response = $this->service->saveHook($data);
         return $response;
