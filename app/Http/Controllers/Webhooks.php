@@ -17,13 +17,14 @@ class Webhooks extends Controller
     }
 
     public function store(Request $request) {
-        error_log($request);
-        $response = $this->service->saveHook($request->all());
+        $data = $request->all();
+        error_log(implode('\n', $data));
+        $response = $this->service->saveHook($data);
         return $response;
     }
 
     public function show($id) {
-        
+
     }
 
     public function update(Request $request, $id) {
