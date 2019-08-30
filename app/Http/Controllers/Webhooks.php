@@ -17,6 +17,7 @@ class Webhooks extends Controller
     }
 
     public function store(Request $request) {
+        /* What? */
         $this->service->saveHook($request->json()->all());
     }
 
