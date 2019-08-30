@@ -17,7 +17,9 @@ class Webhooks extends Controller
     }
 
     public function store(Request $request) {
+        error_log($request);
         $response = $this->service->saveHook($request->all());
+        return $response;
     }
 
     public function show($id) {
