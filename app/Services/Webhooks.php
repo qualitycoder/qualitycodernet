@@ -16,6 +16,7 @@ class Webhooks
 
     public function saveHook($data) {
         $this->webhookMdl->data = json_encode($data);
+        error_log($this->webhookMdl);
         $project = $this->projectMdl->where('stub', 'ogmabot')->first();
         $project->webhooks()->save($this->webhookMdl);
     }
