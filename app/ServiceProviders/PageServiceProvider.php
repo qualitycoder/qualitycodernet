@@ -3,14 +3,13 @@
 namespace App\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\Webhooks;
-use App\Models\Project;
-use App\Models\Webhook;
+use App\Services\Pages;
+use App\Models\Page;
 
-class WebhookServiceProvider extends ServiceProvider {
+class PageServiceProvider extends ServiceProvider {
     public function register() {
-        $this->app->bind(Webhooks::class, function ($app) {
-            return new Webhooks(new Webhook(), new Project());
+        $this->app->bind(Pages::class, function ($app) {
+            return new Pages(new Page());
         });
     }
 
