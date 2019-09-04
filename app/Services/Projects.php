@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Project as ProjectMdl;
+use Illuminate\Support\Facades\Schema;
 
 class Projects
 {
@@ -15,10 +16,48 @@ class Projects
         return $this->projectMdl::all();
     }
 
-    public function getSingleProjectById($id)
-    {
+    public function getSingleProjectById($id) {
         return $this->projectMdl::with('webhooks')
             ->where('id','=', $id)
             ->get();
+    }
+
+    public function createProject(array $data) {
+        $data = $this->cleanseInput($data);
+
+        $newProject = $this->projectMdl->newInstance($data);
+        $newProject->save();
+        return $newProject;
+    }
+
+    public function updateProject($id, array $data) {
+        $data = $this->cleanseInput($data);
+
+        $project = $this->projectMdl->where('id', '=', $id);
+        $project->fill($data);
+        $project->save();
+        return $project;
+    }
+
+    public function deleteProject($id) {
+        $project = $this->projectMdl->where('id', '=', $id);
+        if($project) {
+            $project->delete();
+        }
+
+        return true;
+    }
+
+    private function cleanseInput($data) {
+
+        $columns = Schema::getColumnListing($this->projectMdl->getTable());
+
+        foreach($data as $field => $value) {
+            if(in_array($field, $columns)){
+                $columns[$field] = $value;
+            }
+        }
+
+        return $columns;
     }
 }

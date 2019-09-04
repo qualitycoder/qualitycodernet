@@ -17,7 +17,7 @@ class Projects extends Controller
     }
 
     public function store(Request $request) {
-        //
+        return $this->service->createProject($request->all());
     }
 
     public function show($id) {
@@ -25,10 +25,10 @@ class Projects extends Controller
     }
 
     public function update(Request $request, $id) {
-        //
+        return $this->service->updateProject($id, $request->all());
     }
 
     public function destroy($id) {
-        //
+        return $this->service->deleteProject($id);
     }
 }
