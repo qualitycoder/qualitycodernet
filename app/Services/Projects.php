@@ -52,7 +52,7 @@ class Projects
 
         $columns = Schema::getColumnListing($this->projectMdl->getTable());
         $new_data = [];
-        
+
         foreach($data as $field => $value) {
             if(in_array($field, $columns)){
                 $new_data[$field] = $value;
