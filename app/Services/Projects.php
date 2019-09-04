@@ -33,14 +33,14 @@ class Projects
     public function updateProject($id, array $data) {
         $data = $this->cleanseInput($data);
 
-        $project = $this->projectMdl->where('id', '=', $id)->get();
+        $project = $this->projectMdl->where('id', '=', $id)->first();
         $project->fill($data);
         $project->save();
         return $project;
     }
 
     public function deleteProject($id) {
-        $project = $this->projectMdl->where('id', '=', $id)->get();
+        $project = $this->projectMdl->where('id', '=', $id)->first();
         if($project) {
             $project->delete();
         }
