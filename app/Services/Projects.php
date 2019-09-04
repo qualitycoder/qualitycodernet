@@ -24,7 +24,7 @@ class Projects
 
     public function createProject(array $data) {
         $data = $this->cleanseInput($data);
-
+return json_encode($data);
         $newProject = $this->projectMdl->newInstance($data);
         $newProject->save();
         return $newProject;
@@ -51,7 +51,7 @@ class Projects
     private function cleanseInput($data) {
 
         $columns = Schema::getColumnListing($this->projectMdl->getTable());
-
+return $columns;
         foreach($data as $field => $value) {
             if(in_array($field, $columns)){
                 $columns[$field] = $value;
