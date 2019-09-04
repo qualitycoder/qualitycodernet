@@ -29,6 +29,13 @@ class Projects extends Controller
     }
 
     public function destroy($id) {
-        return $this->service->deleteProject($id);
+        $deleted = $this->service->deleteProject($id);
+        $return['message'] = "Project deleted successfully";
+
+        if(!$deleted){
+            $return['message'] = "There was a problem deleting the project. Please try again later";
+        }
+
+        return json_encode($return);
     }
 }
