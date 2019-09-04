@@ -21,7 +21,7 @@ class Projects extends Controller
     }
 
     public function show($id) {
-        //
+        return $this->service->getSingleProjectById($id);
     }
 
     public function update(Request $request, $id) {

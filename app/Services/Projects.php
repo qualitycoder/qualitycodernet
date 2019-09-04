@@ -14,4 +14,9 @@ class Projects
     public function getProjectsList() {
         return $this->projectMdl::all();
     }
+
+    public function getSingleProjectById($id)
+    {
+        return $this->projectMdl::with('webhooks')->where('id','=', $id);
+    }
 }
