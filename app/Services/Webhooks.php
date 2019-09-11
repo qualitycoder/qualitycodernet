@@ -1,21 +1,34 @@
 <?php
 namespace App\Services;
 
+use App\Interfaces\Service;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Project as ProjectMdl;
-use App\Models\Webhook as WebhookMdl;
 
-class Webhooks
+class Webhooks implements Service
 {
     private $webhookMdl;
     private $projectMdl;
 
-    public function __construct(WebhookMdl $webhookMdl, ProjectMdl $projectMdl) {
-        $this->webhookMdl = $webhookMdl;
-        $this->projectMdl = $projectMdl;
+    public function __construct(Model $mdl){
+        $this->webhookMdl = $mdl;
     }
 
-    public function saveHook($data) {
-        /* Comment */
+    public function getList()
+    {
+        // TODO: Implement getList() method.
+    }
+
+    public function getSingleById($id)
+    {
+        // TODO: Implement getSingleById() method.
+    }
+
+    public function create(array $data)
+    {
+        if(empty($this->projectMdl)) {
+            throw new \Exception('Not Instantiated: Project Model');
+        }
         $this->webhookMdl->data = json_encode($data);
         $project = $this->projectMdl->where('stub', $data['repository']['name'])->first();
 
@@ -30,5 +43,19 @@ class Webhooks
         }
 
         $project->webhooks()->save($this->webhookMdl);
+    }
+
+    public function update($id, array $data)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    public function setProjectModel(ProjectMdl $projMdl) {
+        $this->projectMdl = $projMdl;
     }
 }

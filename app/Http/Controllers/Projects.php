@@ -13,29 +13,22 @@ class Projects extends Controller
     }
 
     public function index() {
-        return $this->service->getProjectsList();
+        return $this->service->getList();
     }
 
     public function store(Request $request) {
-        return $this->service->createProject($request->all());
+        $this->service->create($request->all());
     }
 
     public function show($id) {
-        return $this->service->getSingleProjectById($id);
+        return $this->service->getSingleById($id);
     }
 
     public function update(Request $request, $id) {
-        return $this->service->updateProject($id, $request->all());
+        $this->service->update($id, $request->all());
     }
 
     public function destroy($id) {
-        $deleted = $this->service->deleteProject($id);
-        $return['message'] = "Project deleted successfully";
-
-        if(!$deleted){
-            $return['message'] = "There was a problem deleting the project. Please try again later";
-        }
-
-        return json_encode($return);
+        $this->service->delete($id);
     }
 }

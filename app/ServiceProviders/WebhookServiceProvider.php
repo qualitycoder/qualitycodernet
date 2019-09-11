@@ -10,7 +10,9 @@ use App\Models\Webhook;
 class WebhookServiceProvider extends ServiceProvider {
     public function register() {
         $this->app->bind(Webhooks::class, function ($app) {
-            return new Webhooks(new Webhook(), new Project());
+            $webhook = new Webhooks(new Webhook());
+            $webhook->setProjectModel(new Project());
+            return $webhook;
         });
     }
 

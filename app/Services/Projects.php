@@ -1,28 +1,29 @@
 <?php
 namespace App\Services;
 
-use App\Models\Project as ProjectMdl;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
+use App\Interfaces\Service;
 
-class Projects
+class Projects implements Service
 {
     private $projectMdl;
 
-    public function __construct(ProjectMdl $projectMdl) {
-        $this->projectMdl = $projectMdl;
+    public function __construct(Model $mdl) {
+        $this->projectMdl = $mdl;
     }
 
-    public function getProjectsList() {
+    public function getList() {
         return $this->projectMdl::all();
     }
 
-    public function getSingleProjectById($id) {
+    public function getSingleById($id) {
         return $this->projectMdl::with('webhooks')
             ->where('id','=', $id)
             ->get();
     }
 
-    public function createProject(array $data) {
+    public function create(array $data) {
         $data = $this->cleanseInput($data);
 
         $newProject = $this->projectMdl->newInstance($data);
@@ -30,7 +31,7 @@ class Projects
         return $newProject;
     }
 
-    public function updateProject($id, array $data) {
+    public function update($id, array $data) {
         $data = $this->cleanseInput($data);
 
         $project = $this->projectMdl->where('id', '=', $id)->first();
@@ -39,7 +40,7 @@ class Projects
         return $project;
     }
 
-    public function deleteProject($id) {
+    public function delete($id) {
         $project = $this->projectMdl->where('id', '=', $id)->first();
         if($project) {
             $project->delete();
