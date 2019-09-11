@@ -20,7 +20,7 @@ class Projects implements Service
     public function getSingleById($id) {
         return $this->projectMdl::with('webhooks')
             ->where('id','=', $id)
-            ->get();
+            ->first();
     }
 
     public function create(array $data) {
@@ -28,7 +28,6 @@ class Projects implements Service
 
         $newProject = $this->projectMdl->newInstance($data);
         $newProject->save();
-        return $newProject;
     }
 
     public function update($id, array $data) {
@@ -37,7 +36,6 @@ class Projects implements Service
         $project = $this->projectMdl->where('id', '=', $id)->first();
         $project->fill($data);
         $project->save();
-        return $project;
     }
 
     public function delete($id) {
@@ -45,8 +43,6 @@ class Projects implements Service
         if($project) {
             $project->delete();
         }
-
-        return true;
     }
 
     private function cleanseInput($data) {

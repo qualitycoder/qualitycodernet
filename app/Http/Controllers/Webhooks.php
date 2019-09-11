@@ -13,7 +13,7 @@ class Webhooks extends Controller
         $this->service = $hooks;
     }
     public function index() {
-        //
+        return $this->service->getList();
     }
 
     public function store(Request $request) {

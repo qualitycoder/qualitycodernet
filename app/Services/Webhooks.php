@@ -4,24 +4,23 @@ namespace App\Services;
 use App\Interfaces\Service;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project as ProjectMdl;
+use Illuminate\Support\Facades\Schema;
 
 class Webhooks implements Service
 {
     private $webhookMdl;
     private $projectMdl;
 
-    public function __construct(Model $mdl){
+    public function __construct(Model $mdl) {
         $this->webhookMdl = $mdl;
     }
 
-    public function getList()
-    {
-        // TODO: Implement getList() method.
+    public function getList() {
+        return $this->webhookMdl::all();
     }
 
-    public function getSingleById($id)
-    {
-        // TODO: Implement getSingleById() method.
+    public function getSingleById($id) {
+        return $this->webhookMdl::where('id','=', $id)->first();
     }
 
     public function create(array $data)
@@ -47,15 +46,36 @@ class Webhooks implements Service
 
     public function update($id, array $data)
     {
-        // TODO: Implement update() method.
+        $data = $this->cleanseInput($data);
+
+        $webhook = $this->getSingleById($id);
+        $webhook->fill($data);
+        $webhook->save();
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+        $webhook = $this->webhookMdl->where('id', '=', $id)->first();
+        if($webhook) {
+            $webhook->delete();
+        }
     }
 
     public function setProjectModel(ProjectMdl $projMdl) {
         $this->projectMdl = $projMdl;
+    }
+
+    private function cleanseInput($data) {
+
+        $columns = Schema::getColumnListing($this->webhookMdl->getTable());
+        $new_data = [];
+
+        foreach($data as $field => $value) {
+            if(in_array($field, $columns)){
+                $new_data[$field] = $value;
+            }
+        }
+
+        return $new_data;
     }
 }
