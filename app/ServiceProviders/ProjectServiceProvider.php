@@ -11,6 +11,10 @@ class ProjectServiceProvider extends ServiceProvider {
         $this->app->bind(Projects::class, function ($app) {
             return new Projects(new Project());
         });
+
+        $this->app->when('App\Http\Controllers\Projects')
+            ->needs('App\Interfaces\Service')
+            ->give(Projects::class);
     }
 
 

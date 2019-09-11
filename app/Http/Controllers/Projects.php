@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Interfaces\Service;
 use Illuminate\Http\Request;
-use App\Services\Projects as ProjectSvc;
 
 class Projects extends Controller
 {
     public $service;
 
-    public function __construct(ProjectSvc $projects_svc) {
+    public function __construct(Service $projects_svc) {
         $this->service = $projects_svc;
     }
 

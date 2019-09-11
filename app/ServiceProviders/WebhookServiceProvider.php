@@ -14,6 +14,10 @@ class WebhookServiceProvider extends ServiceProvider {
             $webhook->setProjectModel(new Project());
             return $webhook;
         });
+
+        $this->app->when('App\Http\Controllers\Webhooks')
+            ->needs('App\Interfaces\Service')
+            ->give(Webhooks::class);
     }
 
 

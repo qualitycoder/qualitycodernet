@@ -12,28 +12,19 @@ class Pages implements Service
         $this->pageMdl = $mdl;
     }
 
-    public function getList()
-    {
-        // TODO: Implement getList() method.
-    }
-
-    public function getSingleById($id)
-    {
+    public function getSingleById($id) {
         // TODO: Implement getSingleById() method.
     }
 
-    public function create(array $data)
-    {
+    public function create(array $data) {
         // TODO: Implement create() method.
     }
 
-    public function update($id, array $data)
-    {
+    public function update($id, array $data) {
         // TODO: Implement update() method.
     }
 
-    public function delete($id)
-    {
+    public function delete($id) {
         // TODO: Implement delete() method.
     }
 }

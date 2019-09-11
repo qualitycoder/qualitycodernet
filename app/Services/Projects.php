@@ -1,11 +1,13 @@
 <?php
 namespace App\Services;
 
+use App\Interfaces\Listable;
+use App\Interfaces\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
-use App\Interfaces\Service;
 
-class Projects implements Service
+
+class Projects implements Service, Listable
 {
     private $projectMdl;
 

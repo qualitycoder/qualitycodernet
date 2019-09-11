@@ -1,12 +1,13 @@
 <?php
 namespace App\Services;
 
+use App\Interfaces\Listable;
 use App\Interfaces\Service;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project as ProjectMdl;
 use Illuminate\Support\Facades\Schema;
 
-class Webhooks implements Service
+class Webhooks implements Service, Listable
 {
     private $webhookMdl;
     private $projectMdl;
