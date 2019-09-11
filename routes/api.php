@@ -18,8 +18,8 @@ use Illuminate\Http\Request;
 //});
 
 Route::prefix('pages')->namespace('Pages')->group(function(){
-    Route::resource('home', 'Home')->except(['create', 'edit']);
-    Route::resource('about', 'About')->except(['create', 'edit']);
+    Route::resource('home', 'Home')->except(['create', 'edit', 'show']);
+    Route::resource('about', 'About')->except(['create', 'edit', 'show']);
 });
 
 Route::resource('projects', 'Projects')
