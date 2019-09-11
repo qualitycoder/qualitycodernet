@@ -21,14 +21,14 @@ class Webhooks extends Controller
     }
 
     public function show($id) {
-
+        $this->service->getSingleById($id);
     }
 
     public function update(Request $request, $id) {
-        //
+        $this->service->update($id, $request->all());
     }
 
     public function destroy($id) {
-        //
+        $this->service->delete($id);
     }
 }
