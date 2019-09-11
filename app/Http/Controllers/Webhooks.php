@@ -21,7 +21,7 @@ class Webhooks extends Controller
     }
 
     public function show($id) {
-        $this->service->getSingleById($id);
+        return $this->service->getSingleById($id);
     }
 
     public function update(Request $request, $id) {
