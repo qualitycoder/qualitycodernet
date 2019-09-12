@@ -17,10 +17,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::prefix('pages')->namespace('Pages')->group(function(){
-    Route::resource('home', 'Home')->except(['create', 'edit', 'show']);
-    Route::resource('about', 'About')->except(['create', 'edit', 'show']);
-});
+Route::resource('pages', 'Pages');
 
 Route::resource('projects', 'Projects')
     ->except(['create', 'edit']);

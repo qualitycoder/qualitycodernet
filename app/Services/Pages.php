@@ -14,6 +14,10 @@ class Pages implements Service, Stubable
         $this->pageMdl = $mdl;
     }
 
+    public function getList() {
+        return $this->pageMdl::all()->except('content');
+    }
+
     public function getSingleByStub($stub) {
         return $this->pageMdl::where('stub', '=', $stub)->first();
     }

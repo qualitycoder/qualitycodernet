@@ -12,11 +12,7 @@ class PageServiceProvider extends ServiceProvider {
             return new Pages(new Page());
         });
 
-        $this->app->when('App\Http\Controllers\Pages\About')
-            ->needs('App\Interfaces\Service')
-            ->give(Pages::class);
-
-        $this->app->when('App\Http\Controllers\Pages\Home')
+        $this->app->when('App\Http\Controllers\Pages')
             ->needs('App\Interfaces\Service')
             ->give(Pages::class);
     }
